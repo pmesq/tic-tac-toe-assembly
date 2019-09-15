@@ -5,7 +5,7 @@ ORG 100H
 
 .DATA
 
-board   DB " | | ", 10, 13, " | | ", 10, 13, " | | ", 10, 13, 10, 13, "$"
+board               DB " | | ", 10, 13, " | | ", 10, 13, " | | ", 10, 13, 10, 13, "$"
     
 msgTitle            DB "Tic Tac Toe", 10, 13, 10, 13, "$"
 msgSquaresNumbers   DB "Squares numbers:", 10, 13, "1|2|3", 10, 13, "4|5|6", 10, 13, "7|8|9", 10, 13, 10, 13, "$"
@@ -23,27 +23,27 @@ MOV BL, "X"; Player X starts playing
 
 JMP run
 
-; Clear screen
+; Clears the screen
 clear:
     MOV AX, 00H
     INT 10H
 RET
 
-; Print title
+; Prints the title
 printTitle:
     MOV AH, 09H
     LEA DX, msgTitle
     INT 21H
 RET
 
-; Print squares numbers
+; Prints the squares numbers
 printSquaresNumbers:
     MOV AH, 09H
     LEA DX, msgSquaresNumbers
     INT 21H
 RET
 
-; Print board
+; Prints the current board
 printBoard:
     MOV AH, 09H
     LEA DX, msgBoard
@@ -109,7 +109,7 @@ mark:
 RET        
 
 ; Calculates game result
-; @param    board = board
+; @param    board = game board
 ; @return   BH = game result
 calculateResult:
     LEA SI, board
@@ -203,7 +203,7 @@ calculateResult:
     returnResult:
 RET
 
-; Handles result
+; Handles the game result
 ; @param    BH = game result
 handleResult:
     CMP BH, "."
@@ -212,7 +212,7 @@ RET
 
 ; Changes turn
 ; @param    BL = current turn
-; @retutn   BL = new turn
+; @return   BL = new turn
 changeTurn:
     CMP BL, "X"
     JE setTurnO
@@ -236,7 +236,7 @@ run:
     CALL changeTurn
 JMP run
       
-; Finishes game
+; Finishes the game
 ; @param    BH = result
 finish:
     CALL clear
