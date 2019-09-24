@@ -6,7 +6,7 @@ ORG 100H
 .DATA
 
 board               DB " | | ", 10, 13, " | | ", 10, 13, " | | ", 10, 13, 10, 13, "$"
-msgTitle            DB "Tic Tac Toe", 10, 13, 10, 13, "$"
+msgTitle            DB 10, 13, "Tic Tac Toe", 10, 13, 10, 13, "$"
 msgSquaresNumbers   DB "Squares numbers:", 10, 13, "1|2|3", 10, 13, "4|5|6", 10, 13, "7|8|9", 10, 13, 10, 13, "$"
 msgBoard            DB "Current board:", 10, 13, "$"
 msgEnterSquare      DB "Player * plays now", 10, 13, "Enter the square number: $"
